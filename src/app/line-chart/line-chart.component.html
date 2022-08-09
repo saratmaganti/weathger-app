@@ -1,0 +1,15 @@
+<ng-container *ngIf="chartOptionsForTemperature">
+  <h3 class="text-center text-uppercase mt-3">Temperature</h3>
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsForTemperature"
+    style="width: 100%; height: 400px; display: block">
+  </highcharts-chart>
+
+</ng-container>
+
+<ng-container *ngIf="chartOptionsForHumidity">
+  <h3 class="text-center text-uppercase mt-3">Humidity</h3>
+  <highcharts-chart [Highcharts]="Highcharts" [options]="chartOptionsForHumidity"
+    style="width: 100%; height: 400px; display: block">
+  </highcharts-chart>
+
+</ng-container>

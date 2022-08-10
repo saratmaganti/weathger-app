@@ -1,0 +1,7 @@
+<ng-container *ngIf="chartOptionsForTemperature">
+  <app-line-chart [chartData]="chartOptionsForTemperature"></app-line-chart>
+</ng-container>
+
+<ng-container *ngIf="chartOptionsForHumidity">
+  <app-line-chart [chartData]="chartOptionsForHumidity"></app-line-chart>
+</ng-container>

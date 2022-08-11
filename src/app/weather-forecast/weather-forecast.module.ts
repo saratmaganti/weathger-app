@@ -8,6 +8,8 @@ import { WeatherForecastTableComponent } from './weather-forecast-table/weather-
 import { RouterModule, Routes } from '@angular/router';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ReactiveFormsModule } from '@angular/forms';
+import { AgGridModule } from 'ag-grid-angular';
+import { CustomDataTableComponent } from './custom-data-table/custom-data-table.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'report', pathMatch: 'full' },
@@ -24,6 +26,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     LineChartComponent,
+    CustomDataTableComponent,
     WeatherForecastContainerComponent,
     WeatherForecastReportComponent,
     WeatherForecastTableComponent,
@@ -33,6 +36,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     HighchartsChartModule,
+    AgGridModule
   ],
 })
 export class WeatherForeCastModule {}

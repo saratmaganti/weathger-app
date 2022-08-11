@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TABLE_COLUMNS } from 'src/app/constants/weather.const';
 import { CustomHelperUtilService } from 'src/app/custom-helper-util/custom-helper-util.service';
 import { WeatherForecastDataService } from 'src/app/weather-forecast-data/weather-forecast-data.service';
 
@@ -8,6 +9,10 @@ import { WeatherForecastDataService } from 'src/app/weather-forecast-data/weathe
   styleUrls: ['./weather-forecast-table.component.scss'],
 })
 export class WeatherForecastTableComponent implements OnInit {
+  tblDataForTemperature!: any;
+  tblDataForHumidity!: any;
+  readonly tblColumns = TABLE_COLUMNS;
+
   constructor(
     private weatherForeCastDataService: WeatherForecastDataService,
     private customHelperUtilService: CustomHelperUtilService
@@ -18,16 +23,18 @@ export class WeatherForecastTableComponent implements OnInit {
       this.customHelperUtilService.getMonthFromDate(formattedDate);
     this.weatherForeCastDataService.getFullData(formattedDate).subscribe({
       next: (data: any) => {
-        const merged = [].concat.apply([], data);
+        const merged = [].concat
+          .apply([], data)
+          .filter((item) => item !== undefined);
         const currentMonthDates = merged.filter(
           (item: any) => Number(item.date.split('-')[1]) === currentMonth
         );
         console.log(currentMonthDates);
         this.customHelperUtilService.processData(currentMonthDates).subscribe({
           next: (formattedList) => {
-            const chartOptionsForTemperature = { ...formattedList.temperature };
-            const chartOptionsForHumidity = { ...formattedList.humidity };
-            console.log(chartOptionsForTemperature, chartOptionsForHumidity);
+            this.tblDataForTemperature = [...formattedList.temperature.tblList];
+            this.tblDataForHumidity = [...formattedList.humidity.tblList];
+            console.log(this.tblDataForTemperature, this.tblDataForHumidity);
           },
           error: (error) => {
             console.error('There was an error in processData() Method', error);
@@ -43,7 +50,9 @@ export class WeatherForecastTableComponent implements OnInit {
   loadData() {
     this.customHelperUtilService.currentEnteredDate$.subscribe({
       next: (data) => {
-        this.getWeatherData(data);
+        setTimeout(() => {
+          this.getWeatherData(data);
+        }, 500);
       },
       error: (error) => {
         console.error('There was an error in loadData() Method', error);

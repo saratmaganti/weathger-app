@@ -1,39 +1,60 @@
 <div class="container">
   <div class="row">
     <div class="col-md-12">
-      <h2 class="text-center text-uppercase">Weather App!</h2>
+      <h2 class="text-center text-uppercase mb-3">Weather Forecast Details!</h2>
       <!-- Enter dates -->
 
       <form [formGroup]="weatherForm">
-        <div class="input-group mb-3">
-          <input
-            type="date"
-            formControlName="date"
-            placeholder="yyyy-mm-dd"
-            class="form-control"
-          />
-          <div class="input-group-append">
-            <button
-              class="btn btn-primary"
-              type="button"
-              [disabled]="weatherForm.invalid"
-              (click)="loadData()"
-            >
-              OK
-            </button>
-            <button class="btn btn-warning" type="button" (click)="reloadForm()">Reset</button>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="input-group mb-3">
+              <input
+                type="date"
+                formControlName="date"
+                placeholder="yyyy-mm-dd"
+                class="form-control"
+              />
+              <div class="input-group-append">
+                <button
+                  class="btn btn-info"
+                  type="button"
+                  [disabled]="weatherForm.invalid"
+                  (click)="loadData()"
+                >
+                  OK
+                </button>
+                <button
+                  class="btn btn-warning"
+                  type="button"
+                  (click)="reloadForm()"
+                >
+                  Reset
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="btn-group float-right">
+              <button
+                type="button"
+                class="btn btn-info"
+                routerLink="report"
+                [routerLinkActive]="'is-active'"
+              >
+                Report
+              </button>
+              <button
+                type="button"
+                class="btn btn-info"
+                routerLink="table"
+                [routerLinkActive]="'is-active'"
+              >
+                Table
+              </button>
+            </div>
           </div>
         </div>
       </form>
-
-      <div class="btn-group float-right">
-        <button type="button" class="btn btn-primary" routerLink="report">
-          Report
-        </button>
-        <button type="button" class="btn btn-primary" routerLink="table">
-          Table
-        </button>
-      </div>
 
       <div class="mt-3 mb-3">
         <router-outlet></router-outlet>

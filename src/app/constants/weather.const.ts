@@ -11,3 +11,9 @@ export const HUMIDITY_TITLE = "Real time Humidity";
 
 export const TEMPERATURE_SUFFIX = "°C";
 export const HUMIDITY_SUFFIX = "%";
+
+export const TABLE_COLUMNS = [
+  {headerName: 'Date', field: 'date' },
+  {headerName: 'High', field: 'high' },
+  {headerName: 'Low', field: 'low'}
+];

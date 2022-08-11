@@ -47,7 +47,9 @@ export class WeatherForecastReportComponent implements OnInit {
   loadData() {
     this.customHelperUtilService.currentEnteredDate$.subscribe({
       next: (data) => {
-        this.getWeatherData(data);
+        setTimeout(() => {
+          this.getWeatherData(data);
+        }, 500);
       },
       error: (error) => {
         console.error('There was an error in loadData() Method', error);

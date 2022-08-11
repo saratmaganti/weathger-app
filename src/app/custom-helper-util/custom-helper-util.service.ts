@@ -2,7 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, of } from 'rxjs';
 import { HUMIDITY_LABEL, HUMIDITY_SUFFIX, HUMIDITY_TITLE, TEMPERATURE_LABEL, TEMPERATURE_SUFFIX, TEMPERATURE_TITLE } from '../constants/weather.const';
-import { ForeCastItem, WeatherList } from '../model/weather.model';
+import { ForeCastItem, TableData, WeatherList } from '../model/weather.model';
 
 @Injectable({
   providedIn: 'root'
@@ -77,6 +77,8 @@ export class CustomHelperUtilService {
     let lowTempList: number[][] = [];
     let highHumidityList: number[][] = [];
     let lowHumidityList: number[][] = [];
+    let tblTemperatureList: TableData[] = [];
+    let tblHumidityList: TableData[] = [];
     if (data && data.length > 0) {
       data.forEach((item: ForeCastItem) => {
         const formattedDate = this.convertDateToNumber(item.date);
@@ -88,6 +90,10 @@ export class CustomHelperUtilService {
           formattedDate,
           item.temperature.low
         ]);
+        tblTemperatureList.push({
+          date: item.date,
+          ...item.temperature
+        });
         highHumidityList.push([
           formattedDate,
           item.relative_humidity.high
@@ -96,6 +102,10 @@ export class CustomHelperUtilService {
           formattedDate,
           item.relative_humidity.low
         ]);
+        tblHumidityList.push({
+          date: item.date,
+          ...item.relative_humidity
+        });
       });
     }
     return of({
@@ -105,6 +115,7 @@ export class CustomHelperUtilService {
         suffix: TEMPERATURE_SUFFIX,
         highList: highTempList,
         lowList: lowTempList,
+        tblList: tblTemperatureList,
       },
       humidity: {
         title: HUMIDITY_TITLE,
@@ -112,6 +123,7 @@ export class CustomHelperUtilService {
         suffix: HUMIDITY_SUFFIX,
         lowList: lowHumidityList,
         highList: highHumidityList,
+        tblList: tblHumidityList
       }
     });
   }

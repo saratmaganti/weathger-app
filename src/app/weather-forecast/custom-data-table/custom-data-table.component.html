@@ -1,0 +1,19 @@
+<div class="card">
+  <div class="card-header">
+    <h4 class="text-center text-uppercase mt-3 mb-3">{{ title }}</h4>
+  </div>
+  <div class="card-body">
+    <ng-container *ngIf="tblData">
+      <ag-grid-angular
+        style="max-width: 500px; height: 400px"
+        class="ag-theme-alpine"
+        [rowData]="tblData"
+        [columnDefs]="tblColumns"
+        [pagination]="true"
+        [paginationPageSize]="7"
+      >
+      </ag-grid-angular>
+    </ng-container>
+  </div>
+
+</div>

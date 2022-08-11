@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import * as Highcharts from 'highcharts';
 import { ChartOption, WeatherChartOptions } from '../../model/weather.model';
 
@@ -7,7 +7,7 @@ import { ChartOption, WeatherChartOptions } from '../../model/weather.model';
   templateUrl: './line-chart.component.html',
   styleUrls: ['./line-chart.component.scss'],
 })
-export class LineChartComponent implements OnInit {
+export class LineChartComponent implements OnInit, OnChanges {
 
   @Input() chartData!: any;
   Highcharts: typeof Highcharts = Highcharts;
@@ -18,7 +18,7 @@ export class LineChartComponent implements OnInit {
 
   loadChart(data: ChartOption): WeatherChartOptions {
     const chartOptions = {
-      title: { text: data.title },
+      title: { text: "" }, // data.title
       xAxis: {
         type: 'datetime',
         title: {
@@ -62,6 +62,10 @@ export class LineChartComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.chartOptions = this.loadChart(this.chartData);
+  }
+
+  ngOnChanges(): void {
     this.chartOptions = this.loadChart(this.chartData);
   }
 

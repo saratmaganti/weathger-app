@@ -1,1 +1,23 @@
-<p>weather-forecast-table works!</p>
+<div class="row">
+  <div class="col-md-6">
+    <ng-container *ngIf="tblDataForTemperature">
+      <app-custom-data-table
+        [title]="'Temperature'"
+        [tblColumns]="tblColumns"
+        [tblData]="tblDataForTemperature"
+      ></app-custom-data-table>
+    </ng-container>
+  </div>
+
+  <div class="col-md-6">
+    <ng-container *ngIf="tblDataForHumidity">
+      <app-custom-data-table
+        [title]="'Humidity'"
+        [tblColumns]="tblColumns"
+        [tblData]="tblDataForHumidity"
+      ></app-custom-data-table>
+    </ng-container>
+  </div>
+
+</div>
+<br />

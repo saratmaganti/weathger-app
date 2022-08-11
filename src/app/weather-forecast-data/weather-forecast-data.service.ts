@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, switchMap, map, zip } from 'rxjs';
+import { Observable, switchMap, map, zip, shareReplay } from 'rxjs';
 import { WEATHER_FORECAST_TYPES } from '../constants/weather.const';
 import { CustomHelperUtilService } from '../custom-helper-util/custom-helper-util.service';
 
@@ -18,9 +18,11 @@ export class WeatherForecastDataService {
   ) {}
 
   getWeatherForecastData(formattedDate: string, type: string): Observable<any> {
-    return this.http.get(
-      `https://api.data.gov.sg/v1/environment/${type}-weather-forecast?date=${formattedDate}`
-    );
+    return this.http
+      .get(
+        `https://api.data.gov.sg/v1/environment/${type}-weather-forecast?date=${formattedDate}`
+      )
+      .pipe(shareReplay(1));
   }
 
   getFullData(formattedDate: string): Observable<any> {

@@ -29,12 +29,10 @@ export class WeatherForecastTableComponent implements OnInit {
         const currentMonthDates = merged.filter(
           (item: any) => Number(item.date.split('-')[1]) === currentMonth
         );
-        console.log(currentMonthDates);
         this.customHelperUtilService.processData(currentMonthDates).subscribe({
           next: (formattedList) => {
             this.tblDataForTemperature = [...formattedList.temperature.tblList];
             this.tblDataForHumidity = [...formattedList.humidity.tblList];
-            console.log(this.tblDataForTemperature, this.tblDataForHumidity);
           },
           error: (error) => {
             console.error('There was an error in processData() Method', error);

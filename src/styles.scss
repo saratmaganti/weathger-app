@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~ag-grid-community/styles//ag-grid.css";
 @import "~ag-grid-community/styles//ag-theme-alpine.css";
+
+body {
+  background-image: url('./assets/images/bg.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
 
 .is-active {
   font-size: 16px;

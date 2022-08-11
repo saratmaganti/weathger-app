@@ -131,7 +131,7 @@ export class CustomHelperUtilService {
 
   getDates(currentDate: string): Observable<any> {
     const datesList = this.getNoOfDaysAndIterations(currentDate);
-    console.log(datesList);
+    // console.log(datesList);
     return of(datesList);
   }
 
